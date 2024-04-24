@@ -1,13 +1,6 @@
 import sys
-import socket
-import itertools
-import string
-from typing import Tuple, Generator
-
-BUFFER_SIZE = 32
-CHARACTERS = string.ascii_lowercase + string.digits
-SUCCESS_MESSAGE = "Connection success!"
-TOO_MANY_ATTEMPTS_MESSAGE = "Too many attempts."
+from typing import Tuple
+from password_crackers.brute_force_password_cracker import BruteForcePasswordCracker
 
 
 def parse_args() -> Tuple[str, int]:
@@ -17,26 +10,11 @@ def parse_args() -> Tuple[str, int]:
     return ip_address, port
 
 
-def password_generator() -> Generator[str, None, None]:
-    password_len = 1
-    while True:
-        for password in itertools.product(CHARACTERS, repeat=password_len):
-            yield "".join(password)
-        password_len += 1
-
-
 def main():
     ip_address, port = parse_args()
-    passwords = password_generator()
-    server_response = ""
-    with socket.socket() as my_socket:
-        my_socket.connect((ip_address, port))
-        while server_response != SUCCESS_MESSAGE:
-            password = next(passwords)
-            my_socket.send(password.encode())
-            server_response = my_socket.recv(BUFFER_SIZE).decode()
-            if server_response == TOO_MANY_ATTEMPTS_MESSAGE:
-                raise Exception(TOO_MANY_ATTEMPTS_MESSAGE)
+    address = ip_address, port
+    password_cracker = BruteForcePasswordCracker(address)
+    password = password_cracker.crack_password()
     print(password)
 
 
