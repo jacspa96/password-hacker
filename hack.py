@@ -1,6 +1,6 @@
 import sys
 from typing import Tuple
-from password_crackers.brute_force_password_cracker import BruteForcePasswordCracker
+from password_crackers.dictionary_password_cracker import DictionaryPasswordCracker
 
 
 def parse_args() -> Tuple[str, int]:
@@ -13,7 +13,7 @@ def parse_args() -> Tuple[str, int]:
 def main():
     ip_address, port = parse_args()
     address = ip_address, port
-    password_cracker = BruteForcePasswordCracker(address)
+    password_cracker = DictionaryPasswordCracker(address)
     password = password_cracker.crack_password()
     print(password)
 
