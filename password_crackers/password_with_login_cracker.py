@@ -19,7 +19,7 @@ class PasswordWithLoginCracker(BasePasswordCracker):
         super().__init__(address)
         self.BUFFER_SIZE = 64
         self.LOGIN_FOUND_MESSAGE = "Wrong password!"
-        self.NEXT_PASSWORD_LETTER_FOUND_MESSAGE = "Correct letter!"
+        self.NEXT_PASSWORD_LETTER_FOUND_MESSAGE = "Exception happened during login"
         self.CHARACTERS = string.ascii_letters + string.digits
 
         self.logins = load_credentials_from_file(LOGINS_FILE_NAME)
