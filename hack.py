@@ -1,6 +1,6 @@
 import sys
 from typing import Tuple
-from password_crackers.dictionary_password_cracker import DictionaryPasswordCracker
+from password_crackers.password_with_login_cracker import PasswordWithLoginCracker
 
 
 def parse_args() -> Tuple[str, int]:
@@ -13,9 +13,9 @@ def parse_args() -> Tuple[str, int]:
 def main():
     ip_address, port = parse_args()
     address = ip_address, port
-    password_cracker = DictionaryPasswordCracker(address)
-    password = password_cracker.crack_password()
-    print(password)
+    password_cracker = PasswordWithLoginCracker(address)
+    credentials = password_cracker.crack_credentials()
+    print(credentials)
 
 
 if __name__ == "__main__":
