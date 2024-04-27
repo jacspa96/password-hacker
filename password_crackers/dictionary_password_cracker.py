@@ -3,7 +3,6 @@ from .base_password_cracker import BasePasswordCracker
 from .utils import load_credentials_from_file
 from typing import Tuple, List, Generator, override
 
-
 PASSWORD_FILE_NAME = "passwords.txt"
 
 
