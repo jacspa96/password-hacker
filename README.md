@@ -1,4 +1,4 @@
-### Password Hacker
+# Password Hacker
 
 This repo contains my implementation of project Password Hacker from JetBrains Academy (https://hyperskill.org/projects/80)
 
